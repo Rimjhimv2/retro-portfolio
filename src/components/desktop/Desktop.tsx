@@ -342,9 +342,9 @@ useEffect(() => {
         transformStyle: isHolo || isSynthwave ? "preserve-3d" : "flat",
       }}
     >
-      {/* {isSynthwave && <SynthwaveBackground />} */}
+      {isSynthwave && <SynthwaveBackground />}
       
-      {isSynthwave && <SynthwaveBackground onClose={() => setIsSynthwave(false)} />}
+      {/* {isSynthwave && <SynthwaveBackground onClose={() => setIsSynthwave(false)} />} */}
 
 
       <div 
