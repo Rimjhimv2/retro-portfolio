@@ -757,7 +757,7 @@ useEffect(() => {
                             <span className="font-bold text-green-700">ACTIVE</span>
                             
                             <span className="font-bold text-gray-500">OBJECTIVE:</span>
-                            <span>CODE AND BULD</span>
+                            <span>CODE AND BUILD</span>
                         </div>
 
                         <div className="border-t-2 border-dashed border-gray-300 my-2"></div>
