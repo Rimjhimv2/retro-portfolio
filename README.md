@@ -1,4 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Vintage Mac Portfolio
+
+A retro-inspired portfolio that recreates the classic Macintosh System 7 / Mac OS 9 desktop experience using modern web technologies. The project blends nostalgic UI aesthetics with smooth animations and responsive design.
+
+✨ Features
+
+Classic Desktop Experience
+Authentic menu bar, draggable windows, and desktop-style icons inspired by vintage Mac OS.
+
+Modern Enhancements
+Smooth animations, a translucent dock, and subtle motion effects for a polished feel.
+
+Interactive Widgets
+Profile and status widgets integrated directly into the desktop interface.
+
+Custom Intro Animation
+A minimal “good to see you ” loading screen to set the tone.
+
+Responsive & Performant
+Optimized for both desktop and mobile devices.
+
+🛠 Tech Stack
+
+Next.js 14 (App Router)
+
+TypeScript
+
+Tailwind CSS
+
+Framer Motion
+
+Lucide React Icons
 
 ## Getting Started
 
