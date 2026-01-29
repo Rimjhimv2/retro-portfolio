@@ -1,0 +1,264 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Geneva", "Verdana", sans-serif; /* Vintage Mac feel */
+  overflow: hidden; /* Prevent body scroll */
+}
+
+/* Custom Scrollbar for Windows */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 16px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #ffffff;
+  border-left: 1px solid #000000;
+  background-image: radial-gradient(#000 1px, transparent 1px);
+  background-size: 4px 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #ffffff;
+  border: 1px solid #000000;
+  box-shadow: inset 1px 1px 0 0 #000, inset -1px -1px 0 0 #000;
+}
+
+.custom-scrollbar::-webkit-scrollbar-button {
+  background: #ffffff;
+  border: 1px solid #000000;
+  height: 16px;
+  display: block;
+}
+
+.desktop-background {
+  background-image: url('/Background.png'), radial-gradient(rgba(0, 0, 0, 0.5) 1px, transparent 1px);
+  background-size: clamp(250px, 80%, 400px), 20px 20px;
+  background-position: center 40%, 0 0;
+  background-repeat: no-repeat, repeat;
+  background-attachment: fixed, fixed;
+  background-color: #FFFFFF;
+}
+
+@media (min-width: 768px) {
+  .desktop-background {
+    background-size: clamp(300px, 50%, 600px), 20px 20px;
+  }
+}
+
+/* CRT Effect */
+.crt-mode {
+  filter: sepia(0.2) contrast(1.1) brightness(1.1) saturate(1.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.crt-mode::before {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: linear-gradient(
+      rgba(18, 16, 16, 0) 50%,
+      rgba(0, 0, 0, 0.1) 50%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 0, 0, 0.06),
+      rgba(0, 255, 0, 0.02),
+      rgba(0, 0, 255, 0.06)
+    );
+  z-index: 9999;
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+  animation: flicker 0.15s infinite;
+}
+
+@keyframes flicker {
+  0% { opacity: 0.97; }
+  5% { opacity: 0.95; }
+  10% { opacity: 0.9; }
+  15% { opacity: 0.95; }
+  20% { opacity: 0.99; }
+  25% { opacity: 0.95; }
+  30% { opacity: 0.9; }
+  35% { opacity: 0.96; }
+  40% { opacity: 0.98; }
+  45% { opacity: 0.95; }
+  50% { opacity: 0.99; }
+  55% { opacity: 0.93; }
+  60% { opacity: 0.9; }
+  65% { opacity: 0.96; }
+  70% { opacity: 1; }
+  75% { opacity: 0.97; }
+  80% { opacity: 0.95; }
+  85% { opacity: 0.92; }
+  90% { opacity: 0.96; }
+  95% { opacity: 0.99; }
+  100% { opacity: 0.94; }
+}
+
+/* Synthwave Mode Styles */
+.synthwave-mode.desktop-background {
+  background-image: none !important;
+  background-color: transparent !important;
+}
+
+.synthwave-mode .gravity-element {
+  border-color: #00f7ff !important;
+  box-shadow: 0 0 15px #00f7ff, inset 0 0 20px rgba(0, 247, 255, 0.1) !important;
+  background: rgba(11, 0, 20, 0.85) !important;
+  color: #fff !important;
+}
+
+.synthwave-mode .gravity-element .handle {
+  background: linear-gradient(90deg, #ff0055, #7700ff) !important;
+  border-bottom: 1px solid #00f7ff !important;
+}
+
+.synthwave-mode .gravity-element .handle span {
+  background: transparent !important;
+  color: #fff !important;
+  text-shadow: 0 0 5px #fff;
+}
+
+.synthwave-mode .gravity-element .handle div {
+  border-color: #fff !important;
+  background: transparent !important;
+  color: #fff !important;
+}
+
+.synthwave-mode .gravity-element .handle div:hover {
+  background: #fff !important;
+  color: #ff0055 !important;
+}
+
+.synthwave-mode .gravity-element h2 {
+  border-color: #ff0055 !important;
+  color: #00f7ff !important;
+  text-shadow: 0 0 5px #00f7ff;
+}
+
+.synthwave-mode .gravity-element p, 
+.synthwave-mode .gravity-element li,
+.synthwave-mode .gravity-element span {
+  color: #e0e0e0 !important;
+}
+
+.synthwave-mode .gravity-element strong {
+  color: #ff0055 !important;
+}
+
+.synthwave-mode .gravity-element a {
+  color: #00f7ff !important;
+}
+
+.synthwave-mode .gravity-element .border-black {
+    border-color: #00f7ff;
+}
+
+/* Glitch Text Effect */
+.glitch-text {
+  position: relative;
+}
+
+.glitch-text::before,
+.glitch-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+}
+
+.glitch-text::before {
+  left: 2px;
+  text-shadow: -1px 0 #ff00c1;
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch-text::after {
+  left: -2px;
+  text-shadow: -1px 0 #00fff9;
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% { clip: rect(30px, 9999px, 10px, 0); }
+  5% { clip: rect(80px, 9999px, 90px, 0); }
+  10% { clip: rect(10px, 9999px, 40px, 0); }
+  15% { clip: rect(50px, 9999px, 20px, 0); }
+  20% { clip: rect(20px, 9999px, 60px, 0); }
+  25% { clip: rect(90px, 9999px, 30px, 0); }
+  30% { clip: rect(10px, 9999px, 80px, 0); }
+  35% { clip: rect(60px, 9999px, 10px, 0); }
+  40% { clip: rect(40px, 9999px, 50px, 0); }
+  45% { clip: rect(70px, 9999px, 20px, 0); }
+  50% { clip: rect(20px, 9999px, 90px, 0); }
+  55% { clip: rect(50px, 9999px, 10px, 0); }
+  60% { clip: rect(10px, 9999px, 60px, 0); }
+  65% { clip: rect(80px, 9999px, 30px, 0); }
+  70% { clip: rect(30px, 9999px, 70px, 0); }
+  75% { clip: rect(60px, 9999px, 20px, 0); }
+  80% { clip: rect(10px, 9999px, 50px, 0); }
+  85% { clip: rect(90px, 9999px, 10px, 0); }
+  90% { clip: rect(40px, 9999px, 80px, 0); }
+  95% { clip: rect(70px, 9999px, 30px, 0); }
+  100% { clip: rect(20px, 9999px, 60px, 0); }
+}
+
+@keyframes glitch-anim2 {
+  0% { clip: rect(60px, 9999px, 20px, 0); }
+  5% { clip: rect(10px, 9999px, 50px, 0); }
+  10% { clip: rect(90px, 9999px, 10px, 0); }
+  15% { clip: rect(40px, 9999px, 80px, 0); }
+  20% { clip: rect(70px, 9999px, 30px, 0); }
+  25% { clip: rect(20px, 9999px, 60px, 0); }
+  30% { clip: rect(80px, 9999px, 10px, 0); }
+  35% { clip: rect(30px, 9999px, 70px, 0); }
+  40% { clip: rect(60px, 9999px, 20px, 0); }
+  45% { clip: rect(10px, 9999px, 50px, 0); }
+  50% { clip: rect(90px, 9999px, 10px, 0); }
+  55% { clip: rect(40px, 9999px, 80px, 0); }
+  60% { clip: rect(70px, 9999px, 30px, 0); }
+  65% { clip: rect(20px, 9999px, 60px, 0); }
+  70% { clip: rect(80px, 9999px, 10px, 0); }
+  75% { clip: rect(30px, 9999px, 70px, 0); }
+  80% { clip: rect(60px, 9999px, 20px, 0); }
+  85% { clip: rect(10px, 9999px, 50px, 0); }
+  90% { clip: rect(90px, 9999px, 10px, 0); }
+  95% { clip: rect(40px, 9999px, 80px, 0); }
+  100% { clip: rect(70px, 9999px, 30px, 0); }
+}
+
+/* Icon Styles in Synthwave Mode */
+.synthwave-mode .flex-col span {
+  color: #00f7ff !important;
+  text-shadow: 0 0 5px #00f7ff;
+  background: rgba(0,0,0,0.7);
+  padding: 2px 4px;
+}
+
+.synthwave-mode .flex-col .bg-white {
+  background: rgba(0, 0, 0, 0.5) !important;
+  border-color: #ff0055 !important;
+  box-shadow: 0 0 10px #ff0055;
+}
+
+.synthwave-mode .flex-col .bg-black {
+  background: #00f7ff !important;
+  box-shadow: 0 0 10px #00f7ff;
+}
