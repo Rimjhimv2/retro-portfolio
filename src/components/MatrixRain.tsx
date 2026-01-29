@@ -1,9 +1,11 @@
+
+
 "use client";
 
 import { useEffect, useRef } from "react";
 
 interface MatrixRainProps {
-  onClose: () => void;
+  onClose?: () => void;
 }
 
 export default function MatrixRain({ onClose }: MatrixRainProps) {
@@ -20,13 +22,10 @@ export default function MatrixRain({ onClose }: MatrixRainProps) {
     canvas.height = window.innerHeight;
 
     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%";
-    const fontSize =16;
+    const fontSize = 16;
     const columns = canvas.width / fontSize;
 
-    const drops: number[] = [];
-    for (let x = 0; x < columns; x++) {
-      drops[x] = 1;
-    }
+    const drops: number[] = Array(Math.floor(columns)).fill(1);
 
     const draw = () => {
       ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
@@ -35,15 +34,15 @@ export default function MatrixRain({ onClose }: MatrixRainProps) {
       ctx.fillStyle = "#0F0";
       ctx.font = `${fontSize}px monospace`;
 
-      for (let i = 0; i < drops.length; i++) {
+      drops.forEach((y, i) => {
         const text = letters.charAt(Math.floor(Math.random() * letters.length));
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+        ctx.fillText(text, i * fontSize, y * fontSize);
 
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        if (y * fontSize > canvas.height && Math.random() > 0.975) {
           drops[i] = 0;
         }
         drops[i]++;
-      }
+      });
     };
 
     const interval = setInterval(draw, 33);
@@ -62,9 +61,9 @@ export default function MatrixRain({ onClose }: MatrixRainProps) {
   }, []);
 
   return (
-    <div 
-        className="fixed inset-0 z-[100] bg-black cursor-pointer"
-        onClick={onClose}
+    <div
+      className="fixed inset-0 z-[100] bg-black cursor-pointer"
+      onClick={() => onClose?.()}
     >
       <canvas ref={canvasRef} className="block" />
       <div className="absolute top-4 right-4 text-green-500 font-mono text-xs animate-pulse">

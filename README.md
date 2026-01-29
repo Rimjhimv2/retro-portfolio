@@ -16,7 +16,7 @@ Smooth animations, translucent dock, and subtle motion effects.
 Built-in profile and status widgets integrated into the desktop environment.
 
 🎬 Custom Intro Screen
-Minimal “oh hello” loading animation inspired by classic Mac boot screens.
+Minimal “good to see you” loading animation inspired by classic Mac boot screens.
 
 📱 Responsive & Performant
 Optimized for both desktop and mobile devices.
