@@ -1,24 +1,25 @@
-Vintage Mac Portfolio
+# **Vintage Mac Portfolio**
 
-A retro-inspired portfolio that recreates the classic Macintosh System 7 / Mac OS 9 desktop experience using modern web technologies. The project blends nostalgic UI aesthetics with smooth animations and responsive design.
+
+A retro-inspired portfolio that recreates the classic Macintosh System 7 / Mac OS 9 desktop experience using modern web technologies.
+This project blends nostalgic UI aesthetics with smooth animations, interactivity, and responsive design.
 
 ✨ Features
 
-Classic Desktop Experience
-Authentic menu bar, draggable windows, and desktop-style icons inspired by vintage Mac OS.
+🖥 Classic Mac Desktop UI
+Vintage-style menu bar, draggable windows, desktop icons, and system-like interactions.
 
-Modern Enhancements
-Smooth animations, a translucent dock, and subtle motion effects for a polished feel.
+🎨 Modern Visual Enhancements
+Smooth animations, translucent dock, and subtle motion effects.
 
-Interactive Widgets
-Profile and status widgets integrated directly into the desktop interface.
+🧩 Interactive Widgets
+Built-in profile and status widgets integrated into the desktop environment.
 
-Custom Intro Animation
-A minimal “good to see you ” loading screen to set the tone.
+🎬 Custom Intro Screen
+Minimal “oh hello” loading animation inspired by classic Mac boot screens.
 
-Responsive & Performant
+📱 Responsive & Performant
 Optimized for both desktop and mobile devices.
-
 🛠 Tech Stack
 
 Next.js 14 (App Router)
