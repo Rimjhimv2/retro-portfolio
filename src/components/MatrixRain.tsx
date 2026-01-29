@@ -20,7 +20,7 @@ export default function MatrixRain({ onClose }: MatrixRainProps) {
     canvas.height = window.innerHeight;
 
     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%";
-    const fontSize = 16;
+    const fontSize =16;
     const columns = canvas.width / fontSize;
 
     const drops: number[] = [];
