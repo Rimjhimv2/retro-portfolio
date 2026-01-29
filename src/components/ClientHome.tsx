@@ -52,7 +52,7 @@ const [isHolo, setIsHolo] = useState(false);
 //   return () => window.removeEventListener("keydown", handleKeyDown);
 // }, []);
  useEffect(() => {
-    const konamiCode = [
+     const konamiCode = [
       "ArrowUp",
       "ArrowUp",
       "ArrowDown",
@@ -77,6 +77,12 @@ const [isHolo, setIsHolo] = useState(false);
         cursor = 0;
       }
     };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+    
 
 
   useEffect(() => {
