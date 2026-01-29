@@ -8,6 +8,8 @@ import Dock from "@/components/dock/Dock";
 import MatrixRain from "@/components/MatrixRain";
 import GravityChaos from "@/components/GravityChaos";
 import TechGuru, { GuruKey } from "./TechGuru";
+import Snake from "@/components/apps/Snake";
+
 
 interface ClientHomeProps {
   photos: string[];
@@ -20,55 +22,84 @@ export default function ClientHome({ photos }: ClientHomeProps) {
   const [showMatrix, setShowMatrix] = useState(false);
   const [isSynthwave, setIsSynthwave] = useState(false);
   const [activeGuru, setActiveGuru] = useState<GuruKey | null>(null);
+//add
+const [isHolo, setIsHolo] = useState(false);
+
+
 
   // Konami Code Easter Egg
+//   useEffect(() => {
+//     const konamiCode = [
+//       "ArrowUp",
+//       "ArrowUp",
+//       "ArrowDown",
+//       "ArrowDown",
+//       "ArrowLeft",
+//       "ArrowRight",
+//       "ArrowLeft",
+//       "ArrowRight",
+//       "b",
+//       "a",
+//     ];
+//     let cursor = 0;
+
+//     // const handleKeyDown = (e: KeyboardEvent) => {
+//     //   if (e.key === konamiCode[cursor]) {
+//     //     cursor++;
+//     //     if (cursor === konamiCode.length) {
+//     //       toggleWindow("Secrets.txt");
+//     //       cursor = 0;
+//     //     }
+//     //   } else {
+//     //     cursor = 0;
+//     //   }
+//     // };
+//     const handleKeyDown = (e: KeyboardEvent) => {
+//   if (e.repeat) return;
+
+//   const key = e.key.toLowerCase();
+//   if (key === code[cursor]) {
+//     cursor++;
+//     if (cursor === code.length) {
+//       setShowMatrix(true);
+//       cursor = 0;
+//     }
+//   } else {
+//     cursor = 0;
+//   }
+// };
+
+
+//     window.addEventListener("keydown", handleKeyDown);
+//     return () => window.removeEventListener("keydown", handleKeyDown);
+//   }, []);
+
   useEffect(() => {
-    const konamiCode = [
-      "ArrowUp",
-      "ArrowUp",
-      "ArrowDown",
-      "ArrowDown",
-      "ArrowLeft",
-      "ArrowRight",
-      "ArrowLeft",
-      "ArrowRight",
-      "b",
-      "a",
-    ];
-    let cursor = 0;
+  const code = [
+    "arrowup","arrowup","arrowdown","arrowdown",
+    "arrowleft","arrowright","arrowleft","arrowright","b","a"
+  ];
+  let cursor = 0;
 
-    // const handleKeyDown = (e: KeyboardEvent) => {
-    //   if (e.key === konamiCode[cursor]) {
-    //     cursor++;
-    //     if (cursor === konamiCode.length) {
-    //       toggleWindow("Secrets.txt");
-    //       cursor = 0;
-    //     }
-    //   } else {
-    //     cursor = 0;
-    //   }
-    // };
-    const handleKeyDown = (e: KeyboardEvent) => {
-  if (e.repeat) return;
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.repeat) return;
 
-  const key = e.key.toLowerCase();
-  if (key === code[cursor]) {
-    cursor++;
-    if (cursor === code.length) {
-      setShowMatrix(true);
+    const key = e.key.toLowerCase();
+    if (key === code[cursor]) {
+      cursor++;
+      if (cursor === code.length) {
+        setShowMatrix(true);
+        cursor = 0;
+      }
+    } else {
       cursor = 0;
     }
-  } else {
-    cursor = 0;
-  }
-};
+  };
 
+  window.addEventListener("keydown", handleKeyDown);
+  return () => window.removeEventListener("keydown", handleKeyDown);
+}, []);
 
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
-
-  
   useEffect(() => {
     console.log("%cHello, curious developer 👀", "color:#6cf; font-size:16px;");
     console.log("Explorers are my favorite kind of people.");
@@ -85,6 +116,27 @@ export default function ClientHome({ photos }: ClientHomeProps) {
       }
     });
   };
+
+  useEffect(() => {
+  const code = "snake";
+  let cursor = 0;
+
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key.toLowerCase() === code[cursor]) {
+      cursor++;
+
+      if (cursor === code.length) {
+        toggleWindow("Snake");
+        cursor = 0;
+      }
+    } else {
+      cursor = 0;
+    }
+  };
+
+  window.addEventListener("keydown", handleKeyDown);
+  return () => window.removeEventListener("keydown", handleKeyDown);
+}, []);
 
   useEffect(() => {
   const code = "matrix";
@@ -123,6 +175,8 @@ export default function ClientHome({ photos }: ClientHomeProps) {
           />
           <div className="flex-1 pt-8 flex flex-col relative">
             <Desktop 
+            
+
                 openWindows={openWindows} 
                 toggleWindow={toggleWindow} 
                 photos={photos} 
@@ -130,6 +184,8 @@ export default function ClientHome({ photos }: ClientHomeProps) {
                 isSynthwave={isSynthwave}
                 setIsSynthwave={setIsSynthwave}
                 onTriggerGuru={(guru) => setActiveGuru(guru)}
+                onHolo={() => setIsHolo(prev => !prev)}
+  isHolo={isHolo}
             />
             <Dock onOpenWindow={toggleWindow} isSynthwave={isSynthwave} />
           </div>

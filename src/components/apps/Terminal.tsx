@@ -77,8 +77,8 @@ export default function Terminal({ onClose, onMatrix, onOpenSnake, onGravity, on
         break;
       case "skills":
         newHistory.push(
-          "Frontend: React, Next.js, Tailwind, TypeScript",
-          "Backend: Node.js, Python, PostgreSQL",
+          "Frontend: React, Next.js, Tailwind, TypeScript,Javascript",
+          "Backend: Node.js, PostgreSQL",
           "Tools: Git, Docker, AWS"
         );
         break;

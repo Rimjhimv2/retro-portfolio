@@ -22,6 +22,8 @@ interface DesktopProps {
   isSynthwave: boolean;
   setIsSynthwave: React.Dispatch<React.SetStateAction<boolean>>;
   onTriggerGuru: (guru: GuruKey) => void;
+  onHolo: () => void;
+  isHolo: boolean;
 }
 
 type IconType = "file" | "folder";
@@ -167,12 +169,12 @@ function BinaryText() {
   );
 }
 
-export default function Desktop({ openWindows, toggleWindow, photos, onMatrix, isSynthwave, setIsSynthwave, onTriggerGuru }: DesktopProps) {
+export default function Desktop({ openWindows, toggleWindow, photos, onMatrix, isSynthwave, setIsSynthwave, onTriggerGuru,isHolo,  onHolo, }: DesktopProps) {
   const [selectedIcon, setSelectedIcon] = useState<string | null>(null);
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
   const [showBSOD, setShowBSOD] = useState(false);
   const [gravityEnabled, setGravityEnabled] = useState(false);
-  const [isHolo, setIsHolo] = useState(false);
+//   const [isHolo, setIsHolo] = useState(false);
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const [isTransitioning, setIsTransitioning] = useState(false);
   
@@ -188,20 +190,34 @@ export default function Desktop({ openWindows, toggleWindow, photos, onMatrix, i
   };
 
   useEffect(() => {
-    if (!isHolo) {
-        setRotation({ x: 0, y: 0 });
-        return;
-    }
+  if (!isHolo) return;
 
-    const handleMouseMove = (e: MouseEvent) => {
-        const x = (window.innerWidth / 2 - e.clientX) / 25;
-        const y = (window.innerHeight / 2 - e.clientY) / 25;
-        setRotation({ x: y, y: -x });
-    };
+  let angle = 0;
+  const interval = setInterval(() => {
+    angle += 0.5;
+    setRotation({
+      x: Math.sin(angle * 0.05) * 10,
+      y: Math.cos(angle * 0.05) * 10,
+    });
+  }, 16);
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [isHolo]);
+  return () => clearInterval(interval);
+}, [isHolo]);
+
+useEffect(() => {
+  if (!isHolo) return;
+
+  const handleKey = (e: KeyboardEvent) => {
+    if (e.key === "ArrowUp") setRotation(r => ({ ...r, x: r.x - 5 }));
+    if (e.key === "ArrowDown") setRotation(r => ({ ...r, x: r.x + 5 }));
+    if (e.key === "ArrowLeft") setRotation(r => ({ ...r, y: r.y - 5 }));
+    if (e.key === "ArrowRight") setRotation(r => ({ ...r, y: r.y + 5 }));
+  };
+
+  window.addEventListener("keydown", handleKey);
+  return () => window.removeEventListener("keydown", handleKey);
+}, [isHolo]);
+
 
   useEffect(() => {
     if (!gravityEnabled) return;
@@ -309,11 +325,11 @@ export default function Desktop({ openWindows, toggleWindow, photos, onMatrix, i
   ];
 
   const projectIcons: IconItem[] = [
-    { label: "Portfolio.txt", type: "file" },
-    { label: "Financial AI Advisor.txt", type: "file" },
-    { label: "Winter Arc App.txt", type: "file" },
+    { label: "Retro-Portfolio.txt", type: "file" },
+    { label: "Meetsy-app.txt", type: "file" },
+    { label: "ReactChess.txt", type: "file" },
     { label: "More Projects.txt", type: "file" },
-    { label: "classified.enc", type: "file" },
+    { label: "StockTradingDashboard.txt", type: "file" },
   ];
 
   return (
@@ -522,11 +538,19 @@ export default function Desktop({ openWindows, toggleWindow, photos, onMatrix, i
                 ))}
              </div>
           )}
-          {title === "Portfolio.txt" && (
+          {title === "Retro-Portfolio.txt" && (
             <div className="space-y-4">
                 <h2 className="text-xl font-bold uppercase border-b-2 border-black pb-2">Portfolio</h2>
-                <p>This is a retro-styled portfolio website inspired by Mac OS 9, built with Next.js, Tailwind CSS, and Framer Motion.</p>
-                <p>It features a functional window system, drag-and-drop interface (simulated), and a nostalgic design that pays homage to the classic computing era.</p>
+                <p>
+  A retro-inspired portfolio website influenced by the classic Mac OS 9 era,
+  crafted using Next.js, Tailwind CSS, and Framer Motion.
+</p>
+<p>
+  It showcases a fully functional window-based interface with simulated
+  drag-and-drop interactions, blending modern web performance with nostalgic
+  desktop aesthetics.
+</p>
+
                 <div className="mt-4">
                     <h3 className="font-bold">Tech Stack:</h3>
                     <ul className="list-disc list-inside text-sm">
@@ -538,31 +562,114 @@ export default function Desktop({ openWindows, toggleWindow, photos, onMatrix, i
                 </div>
             </div>
           )}
-          {title === "Financial AI Advisor.txt" && (
+          {title === "Meetsy-app.txt" && (
             <div className="space-y-4">
-                <h2 className="text-xl font-bold uppercase border-b-2 border-black pb-2">Financial AI Advisor</h2>
-                <p>An AI-powered financial adviser built with Node.js, Express, TypeScript, and Google Gemini AI with Google Search grounding. Provides real-time analysis, recommendations, and investment guidance for cryptocurrencies and precious metals.</p>
-                
+                <h2 className="text-xl font-bold uppercase border-b-2 border-black pb-2">Meetsy-AI-powered learning platform</h2>
+               <p>
+    An AI-powered community learning platform that helps learners find
+    compatible study partners based on their goals, interests, and learning
+    styles, enabling collaborative and goal-oriented learning.
+  </p>
                 <div className="space-y-2">
                     <h3 className="font-bold border-b border-black w-fit">Features</h3>
                     <ul className="list-disc list-inside text-sm space-y-1">
-                        <li><strong>Portfolio Management System:</strong> Add/update assets, Automated analysis, AI recommendations, Technical analysis, Sentiment analysis, Risk assessment.</li>
-                        <li><strong>Real-Time News Aggregation:</strong> Multi-source fetching, Sentiment analysis, SSE updates, Filtering, Deduplication.</li>
-                        <li><strong>Intelligent Chatbot:</strong> Gemini AI with grounding, Real-time web info, Citations, Context-aware, Personalized advice.</li>
+                        <li>
+        <strong>AI-Powered Study Partner Matching:</strong> Uses semantic AI
+        matching to connect learners beyond keyword-based search.
+      </li>
+      <li>
+        <strong>Community & Goal Tracking:</strong> Create learning goals,
+        track progress, and collaborate within focused learning communities.
+      </li>
+      <li>
+        <strong>Real-Time Collaboration:</strong> Dedicated chats with study
+        partners, AI-generated conversation summaries, and actionable next
+        steps.
+      </li>
+      <li>
+        <strong>Secure Authentication & Plans:</strong> Protected routes with
+        FREE and PRO subscription tiers.
+      </li>
+      <li>
+        <strong>Modern UX Experience:</strong> Responsive design, dark/light
+        themes, real-time notifications, and smooth animations.
+      </li>
                     </ul>
                 </div>
 
                 <div className="space-y-2">
                     <h3 className="font-bold border-b border-black w-fit">Tech Stack</h3>
                     <div className="flex flex-wrap gap-1">
-                        {["Node.js", "TypeScript", "Express.js", "PostgreSQL", "Prisma", "Google Gemini AI", "HuggingFace FinBERT", "CoinGecko API", "NewsAPI"].map(tech => (
+                        {[
+        "Next.js 16",
+        "React 19",
+        "TypeScript",
+        "Tailwind CSS",
+        "Shadcn UI",
+        "PostgreSQL",
+        "Drizzle ORM",
+        "Clerk Auth",
+        "OpenAI GPT-4o-mini",
+        "Hono",
+        "TanStack React Query",
+        "Zod",
+        "Framer Motion",
+      ].map(tech => (
                             <span key={tech} className="text-[10px] border border-black px-1 bg-gray-100">{tech}</span>
                         ))}
                     </div>
                 </div>
             </div>
           )}
-          {title === "Winter Arc App.txt" && (
+          {title === "ReactChess.txt" && (
+    <div className="space-y-4">
+        <h2 className="text-xl font-bold uppercase border-b-2 border-black pb-2">ReactChess</h2>
+        <p>A full-stack chess application with AI-powered opponent and real-time gameplay. Built using MongoDB, Express, React, and Node.js (MERN stack).</p>
+        
+        <div className="space-y-2">
+            <h3 className="font-bold border-b border-black w-fit">Features</h3>
+            <ul className="list-disc list-inside text-sm space-y-1">
+                <li><strong>Core Features:</strong> Real-time multiplayer gameplay, AI-powered opponent, Move validation, Player profiles, Game history & statistics.</li>
+                <li><strong>UI/UX:</strong> Responsive React interface with audio effects for moves, captures, and check/checkmate alerts.</li>
+                <li><strong>Game Engine:</strong> Chessboard.js & Chess.js integration for accurate game mechanics.</li>
+            </ul>
+        </div>
+
+        <div className="space-y-2">
+            <h3 className="font-bold border-b border-black w-fit">Tech Stack</h3>
+            <div className="flex flex-wrap gap-1">
+                {["React.js", "Node.js", "Express.js", "MongoDB", "Chess.js", "Chessboard.js", "JWT", "Tailwind CSS"].map(tech => (
+                    <span key={tech} className="text-[10px] border border-black px-1 bg-gray-100">{tech}</span>
+                ))}
+            </div>
+        </div>
+    </div>
+)}
+{title === "StockTradingDashboard.txt" && (
+    <div className="space-y-4">
+        <h2 className="text-xl font-bold uppercase border-b-2 border-black pb-2">Stock Trading Dashboard</h2>
+        <p>A full-stack stock trading dashboard inspired by Zerodha, with secure authentication, portfolio tracking, and interactive visualizations.</p>
+        
+        <div className="space-y-2">
+            <h3 className="font-bold border-b border-black w-fit">Features</h3>
+            <ul className="list-disc list-inside text-sm space-y-1">
+                <li><strong>Core Features:</strong> User authentication & authorization, RESTful APIs, Portfolio tracking, Real-time stock updates.</li>
+                <li><strong>Data Visualization:</strong> Charts for stock performance & portfolio insights using Chart.js.</li>
+                <li><strong>UI/UX:</strong> Modern and responsive React interface with Tailwind CSS.</li>
+            </ul>
+        </div>
+
+        <div className="space-y-2">
+            <h3 className="font-bold border-b border-black w-fit">Tech Stack</h3>
+            <div className="flex flex-wrap gap-1">
+                {["React.js", "Node.js", "Express.js", "MongoDB", "Mongoose", "JWT", "bcrypt", "Chart.js", "Tailwind CSS"].map(tech => (
+                    <span key={tech} className="text-[10px] border border-black px-1 bg-gray-100">{tech}</span>
+                ))}
+            </div>
+        </div>
+    </div>
+)}
+          {/* {title === "ReactChess.txt" && (
             <div className="space-y-4">
                 <h2 className="text-xl font-bold uppercase border-b-2 border-black pb-2">Winter Arc App</h2>
                 <p>A personal life-alignment companion that acts as your "big brother" during your Winter Arc journey. Built with React Native, Expo, and AI-powered harsh motivation.</p>
@@ -585,7 +692,7 @@ export default function Desktop({ openWindows, toggleWindow, photos, onMatrix, i
                     </div>
                 </div>
             </div>
-          )}
+          )} */}
           {title === "More Projects.txt" && (
             <div className="space-y-4">
                 <h2 className="text-xl font-bold uppercase border-b-2 border-black pb-2">More Projects</h2>
@@ -615,14 +722,14 @@ export default function Desktop({ openWindows, toggleWindow, photos, onMatrix, i
                         <a href="https://x.com/rimjhimv303" className="underline hover:no-underline">DM on X for GitHub(just to mentain annonymity of myself)</a>
                     </div>
                     <div className="opacity-0 hover:opacity-100 transition-opacity text-[10px] text-gray-400 mt-8 cursor-default select-none">
-                        Passcode: PUNK
+                        Passcode: AlgoGirl
                     </div>
                 </div>
                 <div className={`mt-4 p-4 border-2 text-center ${isSynthwave ? 'border-[#ff00ff] bg-black/50 text-[#ff00ff] shadow-[0_0_10px_#ff00ff]' : 'border-black bg-gray-100'}`}>
                     <p className="font-bold">Available for internship!</p>
                 </div>
             </div>
-          )}
+          )} 
           {title === "Macintosh HD" && (
              <div className="grid grid-cols-3 gap-4">
                 {icons.map((icon) => (
@@ -752,7 +859,7 @@ export default function Desktop({ openWindows, toggleWindow, photos, onMatrix, i
                 onMatrix={onMatrix} 
                 onOpenSnake={() => toggleWindow("Snake")}
                 onGravity={() => setGravityEnabled(true)}
-                onHolo={() => setIsHolo(prev => !prev)}
+                  onHolo={onHolo}  
                 onSynthwave={() => setIsSynthwave(prev => !prev)}
             />
           )}
