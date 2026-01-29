@@ -26,54 +26,6 @@ export default function ClientHome({ photos }: ClientHomeProps) {
 const [isHolo, setIsHolo] = useState(false);
 
 
-
-  // Konami Code Easter Egg
-//   useEffect(() => {
-//     const konamiCode = [
-//       "ArrowUp",
-//       "ArrowUp",
-//       "ArrowDown",
-//       "ArrowDown",
-//       "ArrowLeft",
-//       "ArrowRight",
-//       "ArrowLeft",
-//       "ArrowRight",
-//       "b",
-//       "a",
-//     ];
-//     let cursor = 0;
-
-//     // const handleKeyDown = (e: KeyboardEvent) => {
-//     //   if (e.key === konamiCode[cursor]) {
-//     //     cursor++;
-//     //     if (cursor === konamiCode.length) {
-//     //       toggleWindow("Secrets.txt");
-//     //       cursor = 0;
-//     //     }
-//     //   } else {
-//     //     cursor = 0;
-//     //   }
-//     // };
-//     const handleKeyDown = (e: KeyboardEvent) => {
-//   if (e.repeat) return;
-
-//   const key = e.key.toLowerCase();
-//   if (key === code[cursor]) {
-//     cursor++;
-//     if (cursor === code.length) {
-//       setShowMatrix(true);
-//       cursor = 0;
-//     }
-//   } else {
-//     cursor = 0;
-//   }
-// };
-
-
-//     window.addEventListener("keydown", handleKeyDown);
-//     return () => window.removeEventListener("keydown", handleKeyDown);
-//   }, []);
-
   useEffect(() => {
   const code = [
     "arrowup","arrowup","arrowdown","arrowdown",
