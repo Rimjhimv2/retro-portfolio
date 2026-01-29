@@ -48,7 +48,7 @@ function SecretFileContent({ isSynthwave, onToggle, onTriggerGuru }: SecretFileC
 
   const handleDecrypt = (e: React.FormEvent) => {
     e.preventDefault();
-    if (passcode.toUpperCase() === "PUNK") {
+    if (passcode.toUpperCase() === "AlgoGirl") {
       setUnlocked(true);
       setError(false);
     } else {
@@ -671,30 +671,7 @@ useEffect(() => {
         </div>
     </div>
 )}
-          {/* {title === "ReactChess.txt" && (
-            <div className="space-y-4">
-                <h2 className="text-xl font-bold uppercase border-b-2 border-black pb-2">Winter Arc App</h2>
-                <p>A personal life-alignment companion that acts as your "big brother" during your Winter Arc journey. Built with React Native, Expo, and AI-powered harsh motivation.</p>
-                
-                <div className="space-y-2">
-                    <h3 className="font-bold border-b border-black w-fit">Features</h3>
-                    <ul className="list-disc list-inside text-sm space-y-1">
-                        <li><strong>Core Features:</strong> Onboarding Flow, Daily Check-ins, Streak System, Goals Management, Story/Journey Timeline, Settings & Profile, AI Backend, Minimalistic UI.</li>
-                        <li><strong>Data Persistence:</strong> AsyncStorage, Offline-first.</li>
-                        <li><strong>Push Notifications:</strong> Daily check-in reminders, harsh AI reminders.</li>
-                    </ul>
-                </div>
-
-                <div className="space-y-2">
-                    <h3 className="font-bold border-b border-black w-fit">Tech Stack</h3>
-                    <div className="flex flex-wrap gap-1">
-                        {["React Native", "Expo SDK 54", "expo-router", "Node.js", "TypeScript", "Express", "Google Gemini AI", "AsyncStorage"].map(tech => (
-                            <span key={tech} className="text-[10px] border border-black px-1 bg-gray-100">{tech}</span>
-                        ))}
-                    </div>
-                </div>
-            </div>
-          )} */}
+      
           {title === "More Projects.txt" && (
             <div className="space-y-4">
                 <h2 className="text-xl font-bold uppercase border-b-2 border-black pb-2">More Projects</h2>
@@ -780,7 +757,7 @@ useEffect(() => {
                             <span className="font-bold text-green-700">ACTIVE</span>
                             
                             <span className="font-bold text-gray-500">OBJECTIVE:</span>
-                            <span>BUILD COOL STUFF</span>
+                            <span>CODE AND BULD</span>
                         </div>
 
                         <div className="border-t-2 border-dashed border-gray-300 my-2"></div>

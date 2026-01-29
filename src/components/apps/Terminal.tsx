@@ -52,12 +52,13 @@ export default function Terminal({ onClose, onMatrix, onOpenSnake, onGravity, on
           "  hint      - Need a clue?"
         );
         break;
-      case "hint":
-        newHistory.push(
-           "One project is intentionally restricted.",
-"Access credentials are closer than they appear."
+    case "hint":
+  newHistory.push(
+    "Shhh… secrets like to hide where you least expect them.",
+    "Check the files you open and type carefully 😉"
+  );
+  break;
 
-        );
         break;
       case "about":
         newHistory.push(
@@ -69,11 +70,13 @@ export default function Terminal({ onClose, onMatrix, onOpenSnake, onGravity, on
         break;
       case "projects":
         newHistory.push(
-          "1. Portfolio (You are here)",
-          "2. Financial AI Advisor",
-          "3. Winter Arc App",
-          "Type 'open <project_name>' to view details (Coming soon)"
-        );
+  "1. Portfolio — My personal portfolio site",
+  "2. Meetsy — AI Learning Platform",
+  "3. ReactChess — Chess game built with React",
+  "4. Stock Trading Dashboard — Real-time trading dashboard",
+  "Type 'open <project_name>' to view details (Coming soon)"
+);
+
         break;
       case "skills":
         newHistory.push(
@@ -96,8 +99,9 @@ export default function Terminal({ onClose, onMatrix, onOpenSnake, onGravity, on
         onClose();
         return;
       case "sudo":
-        newHistory.push("Permission denied. Administrative access restricted."
-);
+  newHistory.push("⚡ Permission denied. Only tech legends may proceed.");
+  break;
+    
         break;
       case "matrix":
         newHistory.push("System override detected… switching environments."
