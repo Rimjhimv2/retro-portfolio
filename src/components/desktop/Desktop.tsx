@@ -24,6 +24,7 @@ interface DesktopProps {
   onTriggerGuru: (guru: GuruKey) => void;
   onHolo: () => void;
   isHolo: boolean;
+  
 }
 
 type IconType = "file" | "folder";
